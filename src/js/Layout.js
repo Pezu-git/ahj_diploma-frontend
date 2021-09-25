@@ -92,7 +92,7 @@ export default class Layout {
     this.messageEl = document.createElement('div');
     this.messageEl.className = 'message';
     this.messageEl.append(
-      this.createMessageContent(text, type),
+      this.createMessageContent(text, type, timestamp),
       this.createMessageStatus(timestamp),
     );
     this.chatEl.append(this.messageEl);
@@ -103,6 +103,7 @@ export default class Layout {
       case 'message':
         this.messageContentEl = document.createElement('div');
         this.messageContentEl.textContent = text;
+        // this.messageContentEl.insertAdjacentHTML('beforeend', `<p>${dateObj}</p>`);
         break;
       case 'link':
         this.messageContentEl = document.createElement('a');

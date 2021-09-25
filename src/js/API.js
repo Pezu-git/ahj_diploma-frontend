@@ -1,8 +1,10 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable no-console */
+
 /* eslint-disable consistent-return */
 export default class API {
   constructor() {
-    this.url = 'https://ahjdiploma.herokuapp.com';
+    this.url = 'https://ahjdiploma.herokuapp.com/';
   }
 
   async request(method, obj) {
@@ -47,9 +49,11 @@ export default class API {
             },
           );
           this.result = await this.response.json();
+          console.log(this.result);
           return this.result;
         } catch (error) {
           console.log(error);
+          console.log(this.result);
         }
         break;
       default:
@@ -58,9 +62,10 @@ export default class API {
   }
 
   async sendMedia(file) {
+    console.log(file)
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      this.formData.append('file', file);
       this.response = await fetch(
         this.url,
         {
@@ -70,9 +75,11 @@ export default class API {
         },
       );
       this.result = await this.response.json();
+      console.log(this.result);
       return this.result;
     } catch (error) {
       console.log(error);
+      console.log(this.result);
     }
   }
 

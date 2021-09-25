@@ -80,6 +80,7 @@ export default class Controller {
   addMediaFileListener() {
     this.fileControl.addEventListener('change', async () => {
       const [file] = this.fileControl.files;
+      console.log(file);
       const { link, type, dateObj } = await this.api.sendMedia(file);
       await this.gui.createMessage(link, type, dateObj.timestamp);
       await this.changeQuantity();
@@ -125,8 +126,9 @@ export default class Controller {
         } = await this.api.request('POST', {
           type: this.type,
           text: this.input.value,
+          dateObj: this.dateObj,
         });
-        await this.gui.createMessage(text, type, dateObj.timestamp);
+        await this.gui.createMessage(text, type, dateObj);
         this.input.value = '';
         await this.changeQuantity();
       }
@@ -306,6 +308,7 @@ export default class Controller {
       };
 
       const error = (err) => {
+        // eslint-disable-next-line no-console
         console.warn(`ERROR(${err.code}): ${err.message}`);
       };
 
