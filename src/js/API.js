@@ -62,7 +62,6 @@ export default class API {
   }
 
   async sendMedia(file) {
-    console.log(file)
     try {
       const formData = new FormData();
       this.formData.append('file', file);
@@ -74,12 +73,11 @@ export default class API {
           mode: 'cors',
         },
       );
-      this.result = await this.response.json();
+      this.result = await await this.response.json();
       console.log(this.result);
       return this.result;
     } catch (error) {
       console.log(error);
-      console.log(this.result);
     }
   }
 
